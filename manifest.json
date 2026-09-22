@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "BD Rail Booking Helper (personal)",
+  "version": "0.4.0",
+  "description": "Personal helper for booking my own Bangladesh Railway tickets. Stops at the OTP window. Never touches login, CAPTCHA, OTP or payment.",
+  "permissions": ["storage", "notifications"],
+  "host_permissions": ["https://eticket.railway.gov.bd/*"],
+  "background": { "service_worker": "background.js" },
+  "icons": { "16": "icons/icon16.png", "48": "icons/icon48.png", "128": "icons/icon128.png" },
+  "action": {
+    "default_title": "BD Rail Booking Helper",
+    "default_popup": "popup.html",
+    "default_icon": { "16": "icons/icon16.png", "48": "icons/icon48.png" }
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://eticket.railway.gov.bd/*"],
+      "js": ["selectors.js", "utils.js", "overlay.js", "flow.js", "content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}

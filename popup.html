@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>BD Rail Booking Helper</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header>
+    <div class="brand"><span class="led"></span><h1 class="dots">BD RAIL</h1></div>
+    <div class="sub">BOOKING HELPER / PERSONAL USE</div>
+  </header>
+
+  <div class="sec">01 Route</div>
+  <div class="row">
+    <div><label class="lbl" for="from">From</label><input id="from" placeholder="Dhaka"></div>
+    <div class="route-dots">&bull;&bull;</div>
+    <div><label class="lbl" for="to">To</label><input id="to" placeholder="Cumilla"></div>
+  </div>
+  <div class="hint">Spell stations exactly as the site shows them.</div>
+
+  <label class="lbl" for="date">Journey date</label>
+  <input id="date" type="date">
+
+  <div class="sec">02 Class</div>
+  <div class="row">
+    <div><label class="lbl" for="class1">1st choice</label><select id="class1"></select></div>
+    <div><label class="lbl" for="class2">2nd choice</label><select id="class2"></select></div>
+  </div>
+
+  <div class="sec">03 Trains</div>
+  <div class="stack">
+    <input id="train1" placeholder="1st choice: name or number">
+    <input id="train2" placeholder="2nd choice">
+    <input id="train3" placeholder="3rd choice">
+  </div>
+
+  <div class="sec">04 Seats</div>
+  <div class="lbl" style="margin-top:0">How many</div>
+  <input id="seats" type="hidden" value="1">
+  <div class="seatdots" id="seatDots"></div>
+
+  <div class="row">
+    <div>
+      <label class="lbl" for="seatPref">Preference</label>
+      <select id="seatPref">
+        <option value="any">Any</option>
+        <option value="window">Window</option>
+        <option value="specific">Specific</option>
+      </select>
+    </div>
+    <div>
+      <label class="lbl" for="fallback">If gone</label>
+      <select id="fallback">
+        <option value="any">Take any seat</option>
+        <option value="skip">Skip train</option>
+      </select>
+    </div>
+  </div>
+  <div class="stack" style="margin-top:6px">
+    <input id="seatNumbers" placeholder="Specific seats: 12, 13 or CHA-12">
+  </div>
+
+  <details>
+    <summary>Timing</summary>
+    <div class="hint">"At a set time" waits, then starts on its own. Retry keeps trying until seats appear or Max tries is reached.</div>
+    <div class="row">
+      <div>
+        <label class="lbl" for="startMode">Start</label>
+        <select id="startMode">
+          <option value="now">Now</option>
+          <option value="scheduled">At set time</option>
+        </select>
+      </div>
+      <div><label class="lbl" for="startTime">Time</label><input id="startTime" type="time"></div>
+    </div>
+    <div class="row">
+      <div><label class="lbl" for="retryEvery">Retry (sec)</label><input id="retryEvery" type="number" min="3" max="60"></div>
+      <div><label class="lbl" for="maxTries">Max tries</label><input id="maxTries" type="number" min="1" max="200"></div>
+    </div>
+  </details>
+
+  <label class="lbl" for="speed" style="margin-top:18px">Speed</label>
+  <select id="speed">
+    <option value="fast">Fast (about 0.2 s between actions)</option>
+    <option value="max">Max (almost no delay)</option>
+    <option value="human">Human-paced (about 1 s)</option>
+  </select>
+
+  <div class="toggle">
+    <label class="t-text" for="dryRun">Dry-run<span class="t-sub">Stops before CONTINUE PURCHASE. Seats stay selected.</span></label>
+    <input id="dryRun" class="switch" type="checkbox">
+  </div>
+
+  <div class="buttons">
+    <div class="row">
+      <button id="startBtn" class="btn go" type="button">Start booking</button>
+      <button id="stopBtn" class="btn" type="button">Stop</button>
+    </div>
+    <button id="openBtn" class="btn" type="button">Open search page</button>
+    <button id="fillBtn" class="btn" type="button">Fill form on this page</button>
+  </div>
+  <div id="saved"></div>
+  <div id="msg"></div>
+
+  <script src="selectors.js"></script>
+  <script src="utils.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>
